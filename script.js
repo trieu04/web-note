@@ -14,20 +14,17 @@ const note_template = `
 /// Get data from storage ///
 ////////////////////////////////////////////////////////////
 
-const notes = JSON.parse(localStorage.getItem("notes"));
+const notes = JSON.parse(localStorage.getItem("notes")) || [];
 const notes_node = document.querySelector("#notes");
-if (Array.isArray(notes)) {
-  for (const item of [...notes].reverse()) {
-    if (item.id && item.content !== undefined) {
-      let note = micromustache.render(note_template, {
-        id: item.id,
-        content: escape_entities(item.content),
-      });
-      notes_node.insertAdjacentHTML("beforeend", note);
-    }
+
+for (const item of [...notes].reverse()) {
+  if (item.id && item.content !== undefined) {
+    let note = micromustache.render(note_template, {
+      id: item.id,
+      content: escape_entities(item.content),
+    });
+    notes_node.insertAdjacentHTML("beforeend", note);
   }
-} else {
-  localStorage.setItem("notes", "[]");
 }
 
 ////////////////////////////////////////////////////////////

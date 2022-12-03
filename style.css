@@ -1,0 +1,92 @@
+:root{
+    /* Font family */ --fontH: Google Sans Text,Arial,Helvetica,sans-serif; --fontB: Google Sans Text,Arial,Helvetica,sans-serif; --fontBa: Google Sans Text,Arial,Helvetica,sans-serif; --fontC: Google Sans Mono,monospace;
+}
+
+body{-webkit-font-smoothing:antialiased;position:relative;top:0 !important;margin:0;padding:0!important;width:100%;font-family:var(--fontB);color:var(--bodyC);background:var(--bodyB);}
+h1, h2, h3, h4, h5, h6{margin:0;font-weight:700;font-family:var(--fontH);}
+
+/* Font Body and Alternative */ @font-face{font-family:'Google Sans Text';font-style:normal;font-weight:400;font-display:swap;src:local('Google Sans Text'),local('Google-Sans-Text'),url(https://fonts.gstatic.com/s/googlesanstext/v16/5aUu9-KzpRiLCAt4Unrc-xIKmCU5qEp2iw.woff2) format('woff2')} 
+/* Font Heading */ @font-face{font-family:'Google Sans Text';font-style:normal;font-weight:700;font-display:swap;src:local('Google Sans Text'),local('Google-Sans-Text'),url(https://fonts.gstatic.com/s/googlesanstext/v16/5aUp9-KzpRiLCAt4Unrc-xIKmCU5oPFTnmhjtg.woff2) format('woff2')}
+/* Source Code Font */ @font-face{font-family:'Google Sans Mono';font-style:normal;font-weight:400;font-display:swap;src:local('Google Sans Mono'),local('Google-Sans-Mono'),url(https://fonts.gstatic.com/s/googlesansmono/v4/P5sUzYWFYtnZ_Cg-t0Uq_rfivrdYH4RE8-pZ5gQ1abT53wVQGrk.woff2) format('woff2')}
+
+
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a0e3ea;
+}
+
+header .header-title {
+    font-size: 28px;
+}
+
+main {
+    padding: 18px;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.create-note {
+    margin-top: 12px;
+    display: flex;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#create_note {
+    border: 0;
+    text-decoration: none;
+    background: #a0e3ea;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+}
+.button {
+    cursor: pointer;
+}
+
+
+.notes .note {
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    border: solid 2px #78909C;
+    margin: 8px auto;
+
+}
+
+.note-content{
+    flex-grow: 1;
+    padding: 4px;
+    border-radius: 4px;
+}
+.note-content[contenteditable="true"]{
+    background-color: rgba(127,127,127,0.1);
+    border-radius: 4px 0 0 4px;
+}
+.note-content:focus-visible {
+    outline: none;
+}
+
+.note-controls {
+    margin: 0 0 auto auto;
+    padding: 0 10px;
+    border-left: solid 2px #78909C;
+    min-width: 80px;
+}
+.note-controls .save {
+    display: none;
+}
+
+.note-control {
+    border: 0;
+    text-decoration: none;
+    background: #CFD8DC;
+    color: black;
+    padding: 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}

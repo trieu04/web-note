@@ -14,27 +14,24 @@ const note_template = `
 /// Get data from storage ///
 ////////////////////////////////////////////////////////////
 
-const notes = JSON.parse(localStorage.getItem("notes"));
+const notes = JSON.parse(localStorage.getItem("notes")) || [];
 const notes_node = document.querySelector("#notes");
-if (Array.isArray(notes)) {
-  for (const item of [...notes].reverse()) {
-    if (item.id && item.content !== undefined) {
-      let note = micromustache.render(note_template, {
-        id: item.id,
-        content: escape_entities(item.content),
-      });
-      notes_node.insertAdjacentHTML("beforeend", note);
-    }
+
+for (const item of [...notes].reverse()) {
+  if (item.id && item.content !== undefined) {
+    let note = micromustache.render(note_template, {
+      id: item.id,
+      content: escape_entities(item.content),
+    });
+    notes_node.insertAdjacentHTML("beforeend", note);
   }
-} else {
-  localStorage.setItem("notes", "[]");
 }
 
 ////////////////////////////////////////////////////////////
 /// Event ///
 ////////////////////////////////////////////////////////////
 
-document.querySelector("#create_note").addEventListener("click", (_) => {
+document.querySelector("#create_note").addEventListener("click", () => {
   let note_data = {
     id: Date.now(),
     content: "",
@@ -56,19 +53,19 @@ document.querySelector("#create_note").addEventListener("click", (_) => {
 });
 
 document.querySelectorAll(".note-controls .edit").forEach((element) => {
-  element.addEventListener("click", (_) => {
+  element.addEventListener("click", () => {
     id = getNoteID("editNote", element.id);
     editNote(id);
   });
 });
 document.querySelectorAll(".note-controls .save").forEach((element) => {
-  element.addEventListener("click", (_) => {
+  element.addEventListener("click", () => {
     id = getNoteID("saveNote", element.id);
     saveNote(id);
   });
 });
 document.querySelectorAll(".note-controls .delete").forEach((element) => {
-  element.addEventListener("click", (_) => {
+  element.addEventListener("click", () => {
     id = getNoteID("deleteNote", element.id);
     deleteNote(id);
   });
@@ -115,13 +112,13 @@ function deleteNote(id) {
 }
 
 function getNoteID(prexix, string) {
-  r = string.match(new RegExp(`^${prexix}(.+)`));
-  if (r) return r[1];
+  match = string.match(new RegExp(`^${prexix}(.+)`));
+  if (match) return match[1];
   return false;
 }
 
 function escape_entities(str) {
-  let char2entity = { "'": "&#39;", '"': "&quot;", "<": "&lt;", ">": "&gt;", "&": "&amp;" };
+  const char2entity = { "'": "&#39;", '"': "&quot;", "<": "&lt;", ">": "&gt;", "&": "&amp;" };
   let rv = "";
   for (let i = 0; i < str.length; i++) {
     let ch = str.charAt(i);

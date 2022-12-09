@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style.css">
     <title>Web Note</title>
-    <script src="micromustache.umd.js"></script>
+    <script src="./src/micromustache.umd.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color", content="#3367D6">
 </head>
 <body>
     <header>
@@ -25,6 +27,14 @@
 
 
     </main>
-    <script src="script.js"></script>
+
+    <script src="./src/script.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("./sw.js")
+                .then(reg => console.log("SW registered, scope: ", reg.scope))
+                .catch(err => console.log("SW registration failed: ", err))
+        }
+    </script>
 </body>
 </html>
